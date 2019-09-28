@@ -16,15 +16,20 @@ public class Enemy : MonoBehaviour
     [Tooltip("True when vulnerable frames are showing.")]
     private bool isVulnerable;
 
+    [SerializeField]
+    [Tooltip("Speed of enemy as it patrols")]
+    private float speed = 5;
+
     //remove this when better system is in place.
     public GameObject upHope;
-
 
     SpriteRenderer sr;
     Animator anim;
     bool isHit;
+    bool facingRight = false;
     float startTime;
     float hitTimePeriod = .1f;
+    float moveDir;
    
     private void Start()
     {
@@ -34,6 +39,10 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        if (facingRight) moveDir = 1;
+        else moveDir = -1;
+        transform.Translate(moveDir * new Vector2(speed, 0) * Time.deltaTime);
+
         if(isHit && Time.time > startTime + hitTimePeriod)
         {
             sr.color = Color.white;
@@ -49,16 +58,20 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject other = collision.gameObject;
-        Debug.Log("Test");
         if (other.layer == LayerMask.NameToLayer("PlayerAttacks"))
         {
             Attack attack = other.GetComponent<Attack>();
             if (attack == null) Debug.LogError("Colliding Object does not have Attack script", other);
             RegisterDamage(attack.damage);
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        flipDir();
     }
 
 
@@ -80,5 +93,11 @@ public class Enemy : MonoBehaviour
             go.transform.position = new Vector3(transform.position.x + (Random.value * 2), transform.position.y + (Random.value * 2),
                 transform.position.z);
         }
+    }
+
+    private void flipDir()
+    {
+        facingRight = !facingRight;
+        sr.flipX = facingRight;
     }
 }

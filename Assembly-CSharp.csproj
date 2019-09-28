@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\HopeManager.cs" />
     <Compile Include="Assets\Scripts\HopeMeter.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\Slash.cs" />
     <Compile Include="Assets\ShakeBehaviour.cs" />
     <Compile Include="Assets\Test Garbage\FreePixelMob\Mobs.cs" />
     <Compile Include="Assets\Test Garbage\FreePixelMob\StateRandom.cs" />

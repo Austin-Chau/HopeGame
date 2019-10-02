@@ -71,15 +71,18 @@ public class Player : MonoBehaviour
         }
 
         //TODO: Check if slash animation is occuring before calling Slash
-        if (Input.GetButtonDown("Slash"))
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
-            Slash(1f);
-        }
+            if (Input.GetButtonDown("Slash"))
+            {
+                Slash(1f);
+            }
 
 
-        if (Input.GetButtonDown("Slash2"))
-        {
-            Slash(slashSpeed);
+            if (Input.GetButtonDown("Slash2"))
+            {
+                Slash(slashSpeed);
+            }
         }
     }
 

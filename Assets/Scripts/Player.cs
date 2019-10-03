@@ -10,33 +10,30 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     [Tooltip("Hero Speed")]
-    private float speed;
-
-    [Header("Bullet Info")]
+    private float speed = 5;
 
     [SerializeField]
-    [Tooltip("Bullet Prefab to instantiate and fire.")]
-    private GameObject bullet;
+    [Tooltip("Amount of force added when hero jumps")]
+    private float jumpForce = 300;
 
     [SerializeField]
     [Tooltip("Speed of the bullet.")]
-    private int bulletSpeed = 20;
+    private int slashSpeed = 2;
 
-    [SerializeField]
-    [Tooltip("Damage of bullets")]
-    private int bulletDamage = 5;
 
     #endregion
 
     #region Private Variables
 
+    bool isGrounded = true;
     float horizontal = 0f;
     float vertical = 0f;
     bool facingRight = true;
     SpriteRenderer sr;
     Transform tr;
     Animator anim;
-    Attack slash;
+    Rigidbody2D rb;
+    BoxCollider2D bc2d;
 
     #endregion
 
@@ -46,16 +43,13 @@ public class Player : MonoBehaviour
         tr = transform;
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
-        slash = transform.GetComponentInChildren<Attack>();
+        rb = GetComponent<Rigidbody2D>();
+        bc2d = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire")){
-            Fire();
-        }
-
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
@@ -68,38 +62,75 @@ public class Player : MonoBehaviour
             anim.SetBool("isMoving", false);
         }
 
-        //TODO: Check if slash animation is occuring before calling Slash
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Physics2D.Raycast(transform.position, Vector2.down)) isGrounded = true;
+        else isGrounded = false;
+
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            Slash();
+            rb.AddForce(Vector2.up * jumpForce);
+        }
+
+        //TODO: Check if slash animation is occuring before calling Slash
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
+            if (Input.GetButtonDown("Slash"))
+            {
+                Slash(1f);
+            }
+
+
+            if (Input.GetButtonDown("Slash2"))
+            {
+                Slash(slashSpeed);
+            }
         }
     }
 
     /// <summary>
-    /// Fires bullet from player to mouse position.
+    /// Fires a Slash from player based on speed and direction of movement.
     /// </summary>
-    void Fire()
+    void Slash(float speed)
     {
-        float hope = UseHope();
+        anim.SetTrigger("Slash");
+        GameObject go = Instantiate(Resources.Load<GameObject>("Prefabs/Slash"));
+        Vector2 dir = Vector2.right;
         
-        Vector2 fireDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - tr.position;
-        GameObject go = Instantiate(bullet);
-
+        if(speed == 1)
+            go.transform.parent = tr;
         go.transform.position = tr.position;
-        Rigidbody2D bRB = go.GetComponent<Rigidbody2D>();
 
-        if (bRB == null) Debug.LogError("Bullet does not have Rigidbody", go);
+        if (horizontal == 0 && vertical == 0)
+        {
+            if (facingRight)
+                dir = Vector2.right;
+            else
+                dir = Vector2.left;
+        }
+        else if (vertical != 0)
+        {
+            dir = new Vector2(0,
+                vertical / (vertical == 0 ? 1 : Mathf.Abs(vertical)));
+        }
+        else
+        {
+            dir = new Vector2(
+                horizontal / (horizontal == 0 ? 1 : Mathf.Abs(horizontal)),
+                0);
+        }
 
-        bRB.velocity = fireDirection.normalized * bulletSpeed;
+        Debug.Log(dir);
 
-        //Sets the damage of the bullet and reduces hope;
-        go.GetComponent<Bullet>().SetDamage(bulletDamage * (hope / HopeManager.MAX_HOPE));
+        go.GetComponent<Slash>().SetRotationAndMove(dir * speed);
+
     }
 
+    /// <summary>
+    /// Moves player horizontally
+    /// </summary>
     void Move()
     {
-        Vector3 newPos = new Vector3(horizontal, 0, 0);
-        transform.position +=  newPos * speed * Time.deltaTime;
+        Vector3 newPos = new Vector3(horizontal, 0);
+        transform.position += newPos * speed * Time.deltaTime;
         
         if(facingRight && horizontal < 0)
         {
@@ -114,18 +145,17 @@ public class Player : MonoBehaviour
 
         anim.SetBool("isMoving", true);
     }
+   
 
-    void Slash()
-    {
-        anim.SetTrigger("Slash");
-        slash.SetDamage(bulletDamage * (UseHope() / HopeManager.MAX_HOPE));
-    }
-
+    /// <summary>
+    /// Expends hope and returns the value to use for damage
+    /// </summary>
+    /// <returns>Amount of hope expended</returns>
     private float UseHope()
     {
         float hope = HopeManager.GetInstance().Hope;
 
-        HopeManager.GetInstance().Hope -= 1f;
+        HopeManager.GetInstance().Hope -= 5f;
 
         return hope;
     }

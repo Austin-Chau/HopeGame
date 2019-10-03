@@ -18,4 +18,9 @@ public class Bullet : Attack
     {
         Destroy(gameObject);
     }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        Destroy(gameObject);
+    }
 }

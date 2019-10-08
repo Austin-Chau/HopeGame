@@ -20,12 +20,17 @@ public class Player : MonoBehaviour
     [Tooltip("Speed of the bullet.")]
     private int slashSpeed = 2;
 
+    [SerializeField]
+    [Tooltip("Time between press and release for high jump.")]
+    private float jumpTimeThreshold = .5f;
 
+    [SerializeField]
+    [Tooltip("Amount of force jump is multiplied by.")]
+    private float longJumpMultiplier = 1.5f;
     #endregion
 
     #region Private Variables
-
-    bool isGrounded = true;
+    
     float horizontal = 0f;
     float vertical = 0f;
     bool facingRight = true;
@@ -34,6 +39,8 @@ public class Player : MonoBehaviour
     Animator anim;
     Rigidbody2D rb;
     BoxCollider2D bc2d;
+
+    float jumpTime;
 
     #endregion
 
@@ -62,15 +69,26 @@ public class Player : MonoBehaviour
             anim.SetBool("isMoving", false);
         }
 
-        if (Physics2D.Raycast(transform.position, Vector2.down)) isGrounded = true;
-        else isGrounded = false;
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump"))
         {
-            rb.AddForce(Vector2.up * jumpForce);
+            if (IsGrounded())
+                jumpTime = Time.time;
+           
         }
 
-        //TODO: Check if slash animation is occuring before calling Slash
+        if (Input.GetButtonUp("Jump"))
+        {
+            if (IsGrounded())
+            {
+                if (Time.time - jumpTime <= jumpTimeThreshold)
+                    rb.AddForce(Vector2.up * jumpForce);
+                else
+                    rb.AddForce(Vector2.up * jumpForce * longJumpMultiplier);
+                jumpTime = float.MaxValue;
+            }
+        }
+
         if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
             if (Input.GetButtonDown("Slash"))
@@ -117,8 +135,7 @@ public class Player : MonoBehaviour
                 horizontal / (horizontal == 0 ? 1 : Mathf.Abs(horizontal)),
                 0);
         }
-
-        Debug.Log(dir);
+        
 
         go.GetComponent<Slash>().SetRotationAndMove(dir * speed);
 
@@ -158,5 +175,20 @@ public class Player : MonoBehaviour
         HopeManager.GetInstance().Hope -= 5f;
 
         return hope;
+    }
+
+    /// <summary>
+    /// Checks if player is grounded or not.
+    /// </summary>
+    /// <returns>Returns true if grounded, false if not.</returns>
+    private bool IsGrounded()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 2f, LayerMask.GetMask("Ground"));
+
+        if (hit.collider != null)
+        {
+            return true;
+        }
+        else return false;
     }
 }

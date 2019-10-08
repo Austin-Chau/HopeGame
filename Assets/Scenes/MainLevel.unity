@@ -237,6 +237,8 @@ MonoBehaviour:
   speed: 5
   jumpForce: 300
   slashSpeed: 20
+  jumpTimeThreshold: 0.5
+  longJumpMultiplier: 1.5
 --- !u!50 &473647308
 Rigidbody2D:
   serializedVersion: 4
@@ -583,7 +585,7 @@ GameObject:
   - component: {fileID: 573826884}
   - component: {fileID: 573826883}
   - component: {fileID: 573826886}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1196,7 +1198,7 @@ GameObject:
   - component: {fileID: 1180212832}
   - component: {fileID: 1180212831}
   - component: {fileID: 1180212833}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2713,7 +2715,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &2076843194
 BoxCollider2D:
   m_ObjectHideFlags: 0

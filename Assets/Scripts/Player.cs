@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Actor
 {
     #region Serialized Variables
 
@@ -34,10 +34,7 @@ public class Player : MonoBehaviour
     float horizontal = 0f;
     float vertical = 0f;
     bool facingRight = true;
-    SpriteRenderer sr;
     Transform tr;
-    Animator anim;
-    Rigidbody2D rb;
     BoxCollider2D bc2d;
 
     float jumpTime;
@@ -45,13 +42,13 @@ public class Player : MonoBehaviour
     #endregion
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        base.Start();
+
         tr = transform;
-        anim = GetComponent<Animator>();
-        sr = GetComponent<SpriteRenderer>();
-        rb = GetComponent<Rigidbody2D>();
         bc2d = GetComponent<BoxCollider2D>();
+
     }
 
     // Update is called once per frame

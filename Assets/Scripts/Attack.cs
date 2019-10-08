@@ -13,12 +13,8 @@ public class Attack : MonoBehaviour
         damage = (int)val;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.tag == "Enemy")
-        {
-            Enemy enem = collision.gameObject.GetComponent<Enemy>();
-            enem.RegisterDamage(damage);
-        }
+        Destroy(gameObject);
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Actor
 {
     [SerializeField]
     [Tooltip("Health of Enemy. Enemy is destroyed when health goes to 0.")]
@@ -23,31 +23,17 @@ public class Enemy : MonoBehaviour
     //remove this when better system is in place.
     public GameObject upHope;
 
-    SpriteRenderer sr;
-    Animator anim;
-    bool isHit;
+    
     bool facingRight = false;
-    float startTime;
-    float hitTimePeriod = .1f;
     float moveDir;
    
-    private void Start()
-    {
-        sr = GetComponent<SpriteRenderer>();
-        anim = GetComponent<Animator>();
-    }
-
     private void Update()
     {
         if (facingRight) moveDir = 1;
         else moveDir = -1;
         transform.Translate(moveDir * new Vector2(speed, 0) * Time.deltaTime);
 
-        if(isHit && Time.time > startTime + hitTimePeriod)
-        {
-            sr.color = Color.white;
-            isHit = false;
-        }
+
 
         //Yup this is a terrible way to do this
         if(Random.value > .99 && !isAttacking)
@@ -61,29 +47,32 @@ public class Enemy : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject other = collision.gameObject;
+        Debug.Log(other.layer == LayerMask.NameToLayer("PlayerAttacks"));
         if (other.layer == LayerMask.NameToLayer("PlayerAttacks"))
         {
             Attack attack = other.GetComponent<Attack>();
             if (attack == null) Debug.LogError("Colliding Object does not have Attack script", other);
             RegisterDamage(attack.damage);
+            Knockback(transform.position - other.transform.position);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        flipDir();
+        GameObject other = collision.gameObject;
+        if (collision.gameObject.layer != LayerMask.NameToLayer("PlayerAttacks"))
+            flipDir();
     }
 
-
-    public void RegisterDamage(int damageVal)
+    /// <summary>
+    /// Enemies have a certain amount of health and will die when health reaches 0. 
+    /// Hope is also restored when enemy is hit in its vulnerable state.
+    /// </summary>
+    /// <param name="damageVal">Amount of Damage recieved</param>
+    protected override void RegisterDamage(int damageVal)
     {
+        base.RegisterDamage(damageVal);
         health -= damageVal;
-        if (health <= 0) Destroy(gameObject);
-
-        sr.color = Color.red;
-        startTime = Time.time;
-        isHit = true;
-        anim.SetTrigger("Attacked");
 
         if (isVulnerable)
         {
@@ -93,6 +82,9 @@ public class Enemy : MonoBehaviour
             go.transform.position = new Vector3(transform.position.x + (Random.value * 2), transform.position.y + (Random.value * 2),
                 transform.position.z);
         }
+
+        if (health <= 0) Destroy(gameObject);
+        
     }
 
     private void flipDir()

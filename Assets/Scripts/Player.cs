@@ -197,6 +197,7 @@ public class Player : Actor
         {
             //Does flat damage for now.
             RegisterDamage(5);
+            UseHope();
             Knockback(transform.position - other.transform.position);
         }
     }

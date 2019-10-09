@@ -9,12 +9,13 @@ public class HopeMeter : MonoBehaviour
     private GameObject FillArea;
 
     Slider slider;
-    ColorBlock cb;
+    Image fill;
 
     private void Start()
     {
         slider = GetComponent<Slider>();
-        cb = slider.colors;
+        fill = FillArea.GetComponentInChildren<Image>();
+        if (fill == null) Debug.LogError("Fill was not found in gameObject " + gameObject);
         HopeManager.HopeChangeDelegate += GetHope;
     }
 
@@ -23,17 +24,15 @@ public class HopeMeter : MonoBehaviour
         slider.value = hope;
         if (hope < -50)
         {
-            cb.normalColor = Color.red;
+            fill.color = Color.red;
         }
         else if(hope > 50)
         {
-            cb.normalColor = Color.yellow;
+            fill.color = Color.yellow;
         }
         else
         {
-            cb.normalColor = Color.cyan;
+            fill.color = Color.cyan;
         }
-
-        slider.colors = cb;
     }
 }

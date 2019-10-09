@@ -192,7 +192,6 @@ public class Player : Actor
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject other = collision.gameObject;
-        Debug.Log(other.layer == LayerMask.NameToLayer("Enemy"));
         if (other.layer == LayerMask.NameToLayer("Enemy"))
         {
             //Does flat damage for now.

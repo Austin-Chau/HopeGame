@@ -25,7 +25,7 @@ public class Enemy : Actor
 
     
     bool facingRight = false;
-    float moveDir;
+    float moveDir; 
    
     private void Update()
     {
@@ -56,13 +56,6 @@ public class Enemy : Actor
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        GameObject other = collision.gameObject;
-        if (collision.gameObject.layer != LayerMask.NameToLayer("PlayerAttacks"))
-            flipDir();
-    }
-
     /// <summary>
     /// Enemies have a certain amount of health and will die when health reaches 0. 
     /// Hope is also restored when enemy is hit in its vulnerable state.
@@ -86,8 +79,9 @@ public class Enemy : Actor
         
     }
 
-    private void flipDir()
+    public void flipDir()
     {
+        Debug.Log("flipDir fired");
         facingRight = !facingRight;
         sr.flipX = facingRight;
     }

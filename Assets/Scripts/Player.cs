@@ -30,7 +30,7 @@ public class Player : Actor
     #endregion
 
     #region Private Variables
-    
+
     float horizontal = 0f;
     float vertical = 0f;
     bool facingRight = true;
@@ -71,7 +71,7 @@ public class Player : Actor
         {
             if (IsGrounded())
                 jumpTime = Time.time;
-           
+
         }
 
         if (Input.GetButtonUp("Jump"))
@@ -109,8 +109,8 @@ public class Player : Actor
         anim.SetTrigger("Slash");
         GameObject go = Instantiate(Resources.Load<GameObject>("Prefabs/Slash"));
         Vector2 dir = Vector2.right;
-        
-        if(speed == 1)
+
+        if (speed == 1)
             go.transform.parent = tr;
         go.transform.position = tr.position;
 
@@ -132,7 +132,7 @@ public class Player : Actor
                 horizontal / (horizontal == 0 ? 1 : Mathf.Abs(horizontal)),
                 0);
         }
-        
+
 
         go.GetComponent<Slash>().SetRotationAndMove(dir * speed);
 
@@ -145,13 +145,13 @@ public class Player : Actor
     {
         Vector3 newPos = new Vector3(horizontal, 0);
         transform.position += newPos * speed * Time.deltaTime;
-        
-        if(facingRight && horizontal < 0)
+
+        if (facingRight && horizontal < 0)
         {
             facingRight = false;
             sr.flipX = true;
         }
-        else if(horizontal > 0)
+        else if (horizontal > 0)
         {
             sr.flipX = false;
             facingRight = true;
@@ -159,7 +159,7 @@ public class Player : Actor
 
         anim.SetBool("isMoving", true);
     }
-   
+
 
     /// <summary>
     /// Expends hope and returns the value to use for damage
@@ -187,5 +187,25 @@ public class Player : Actor
             return true;
         }
         else return false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        GameObject other = collision.gameObject;
+        Debug.Log(other.layer == LayerMask.NameToLayer("Enemy"));
+        if (other.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            //Does flat damage for now.
+            RegisterDamage(5);
+            Knockback(transform.position - other.transform.position);
+        }
+    }
+
+    protected override void Knockback(Vector2 dir){
+        rb.velocity = Vector3.zero;
+
+        dir.y = dir.normalized.y;
+
+        rb.AddForce(dir * knockbackForce);
     }
 }

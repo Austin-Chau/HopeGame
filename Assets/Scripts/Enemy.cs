@@ -47,7 +47,6 @@ public class Enemy : Actor
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject other = collision.gameObject;
-        Debug.Log(other.layer == LayerMask.NameToLayer("PlayerAttacks"));
         if (other.layer == LayerMask.NameToLayer("PlayerAttacks"))
         {
             Attack attack = other.GetComponent<Attack>();

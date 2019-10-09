@@ -9,7 +9,7 @@ public abstract class Actor : MonoBehaviour
 {
     [SerializeField]
     [Tooltip("Amount of force that occurs when hit")]
-    private int knockbackForce = 100;
+    protected int knockbackForce = 300;
     
     float hitTimePeriod = .1f;
 
@@ -35,7 +35,7 @@ public abstract class Actor : MonoBehaviour
         StartCoroutine(FlashRed());
     }
 
-    protected void Knockback(Vector2 dir)
+    protected virtual void Knockback(Vector2 dir)
     {
         rb.velocity = Vector3.zero;
         rb.AddForce(dir * knockbackForce);

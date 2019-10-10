@@ -14,7 +14,7 @@ public class Enemy : Actor
 
     [SerializeField]
     [Tooltip("True when vulnerable frames are showing.")]
-    private bool isVulnerable;
+    private bool isVulnerable = false;
 
     [SerializeField]
     [Tooltip("Speed of enemy as it patrols")]
@@ -75,8 +75,11 @@ public class Enemy : Actor
                 transform.position.z);
         }
 
-        if (health <= 0) Destroy(gameObject);
-        
+        if (health <= 0)
+        {
+            GameManager.s.RaiseKillCount();
+            Destroy(gameObject);
+        }
     }
 
     public void flipDir()

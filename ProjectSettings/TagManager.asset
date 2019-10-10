@@ -17,8 +17,8 @@ TagManager:
   - Player
   - PlayerAttacks
   - Ground
-  - 
-  - 
+  - Enemy
+  - EnemySensor
   - 
   - 
   - 

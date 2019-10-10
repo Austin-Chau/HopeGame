@@ -5,10 +5,6 @@ using UnityEngine;
 public class Slash : Attack
 {
     [SerializeField]
-    [Tooltip("Speed at which the slash wave moves for its duration.")]
-    private float moveSpeed = 10;
-
-    [SerializeField]
     [Tooltip("How long the slash lasts in seconds.")]
     private float lifetime = .5f;
 

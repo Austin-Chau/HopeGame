@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum HopeState { Low, Normal, High };
+
 /// <summary>
 /// Class that manages the hope value. Everytime hope value changes, a delegate
 /// fires any functions attached to it, so that they can do whatever they need to with
@@ -26,6 +29,7 @@ public class HopeManager
 
     #endregion
 
+    public HopeState state { get; private set; }
     
     private float hope = 0;
     public float Hope
@@ -40,8 +44,13 @@ public class HopeManager
             {
                 HopeChangeDelegate(value);
                 hope = value;
+
+                if (value >= 66) state = HopeState.High;
+                else if (value <= -66) state = HopeState.Low;
+                else state = HopeState.Normal;
             }
         }
     }
+
 
 }

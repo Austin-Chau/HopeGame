@@ -133,8 +133,24 @@ public class Player : Actor
                 0);
         }
 
+        Slash slash = go.GetComponent<Slash>();
+        
 
-        go.GetComponent<Slash>().SetRotationAndMove(dir * speed);
+        switch (HopeManager.GetInstance().state)
+        {
+            case HopeState.Low:
+                slash.damage = 0;
+                break;
+            case HopeState.Normal:
+                slash.damage = 5;
+                break;
+            case HopeState.High:
+                slash.damage = 15;
+                break;
+
+        }
+
+        slash.SetRotationAndMove(dir * speed);
 
     }
 
@@ -160,20 +176,7 @@ public class Player : Actor
         anim.SetBool("isMoving", true);
     }
 
-
-    /// <summary>
-    /// Expends hope and returns the value to use for damage
-    /// </summary>
-    /// <returns>Amount of hope expended</returns>
-    private float UseHope()
-    {
-        float hope = HopeManager.GetInstance().Hope;
-
-        HopeManager.GetInstance().Hope -= 5f;
-
-        return hope;
-    }
-
+    
     /// <summary>
     /// Checks if player is grounded or not.
     /// </summary>
@@ -196,7 +199,7 @@ public class Player : Actor
         {
             //Does flat damage for now.
             RegisterDamage(5);
-            UseHope();
+            HopeManager.GetInstance().Hope += -5;
             Knockback(transform.position - other.transform.position);
         }
     }

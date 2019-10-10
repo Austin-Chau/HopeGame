@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    public int damage { get; private set; } = 1;
+    public int damage = 1;
 
     protected Transform tr;
 

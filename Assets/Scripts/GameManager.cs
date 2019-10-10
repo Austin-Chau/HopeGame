@@ -18,10 +18,11 @@ public class GameManager : MonoBehaviour
     [Tooltip("Subtracts 1 point every n seconds when hope is > 0")]
     private float hopeDecaySpeed = 1.0f;
 
+    private const int LOW_HOPE_THRESHOLD = -66;
+    private const int HIGH_HOPE_THRESHOLD = 66;
 
     HopeManager hm;
     Coroutine co;
-    bool isCoRunning;
 
     //Win condition right now.
     int killCount;
@@ -32,8 +33,7 @@ public class GameManager : MonoBehaviour
     {
         if (s != null) Destroy(gameObject);
         else s = this;
-
-        isCoRunning = false;
+        
         hm = HopeManager.GetInstance();
 
         CountEnemies();
@@ -43,28 +43,21 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isCoRunning)
-        {
-            if (hm.Hope > 0)
-            {
-                StartCoroutine(AdjustHope(hopeDecaySpeed, -1));
-            }
-            if (hm.Hope < 0)
-            {
-                StartCoroutine(AdjustHope(hopeRegenSpeed, 1));
-            }
-        }
+        StartCoroutine(AdjustHope());      
     }
 
-    IEnumerator AdjustHope(float timeInterval, int hopeMod)
+    IEnumerator AdjustHope()
     {
-        isCoRunning = true;
-        while (hm.Hope != 0)
+        float mod = 0;
+
+        while (true)
         {
-            hm.Hope += hopeMod;
-            yield return new WaitForSeconds(timeInterval);
+            if(hm.Hope > 0 && hm.Hope < LOW_HOPE_THRESHOLD)
+            {
+                mod = hopeRegenSpeed;
+            }
+            yield return new WaitForSeconds(1.0f);
         }
-        isCoRunning = false;
     }
 
     /// <summary>

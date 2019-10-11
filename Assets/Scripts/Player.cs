@@ -27,6 +27,10 @@ public class Player : Actor
     [SerializeField]
     [Tooltip("Amount of force jump is multiplied by.")]
     private float longJumpMultiplier = 1.5f;
+
+    [SerializeField]
+    [Tooltip("Amount that speed is multiplied by when at low hope")]
+    private float lowHopeSpeedMultiplier = 1.2f;
     #endregion
 
     #region Private Variables
@@ -160,7 +164,12 @@ public class Player : Actor
     void Move()
     {
         Vector3 newPos = new Vector3(horizontal, 0);
-        transform.position += newPos * speed * Time.deltaTime;
+
+        float finalSpeed = speed;
+        if (HopeManager.GetInstance().state == HopeState.Low)
+            finalSpeed *= lowHopeSpeedMultiplier;
+
+        transform.position += newPos * finalSpeed * Time.deltaTime;
 
         if (facingRight && horizontal < 0)
         {

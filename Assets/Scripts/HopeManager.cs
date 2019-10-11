@@ -29,7 +29,7 @@ public class HopeManager
 
     #endregion
 
-    public HopeState state { get; private set; }
+    public HopeState state { get; private set; } = HopeState.Normal;
     
     private float hope = 0;
     public float Hope

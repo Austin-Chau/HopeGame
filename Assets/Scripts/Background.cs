@@ -40,8 +40,7 @@ public class Background : MonoBehaviour
         newPos.x = newPos.x * speedRatio;
         transform.position += newPos;
         camPos = Camera.main.transform.position;
-
-        Debug.Log(leftIndex);
+        
         if (camPos.x < (images[leftIndex].transform.position.x + viewZone))
             ScrollLeft();
         else if (camPos.x > (images[rightIndex].transform.position.x - viewZone))

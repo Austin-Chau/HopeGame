@@ -38,13 +38,9 @@ public class GameManager : MonoBehaviour
 
         CountEnemies();
 
+        StartCoroutine(AdjustHope());
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        StartCoroutine(AdjustHope());      
-    }
+    
 
     IEnumerator AdjustHope()
     {
@@ -52,10 +48,16 @@ public class GameManager : MonoBehaviour
 
         while (true)
         {
-            if(hm.Hope > 0 && hm.Hope < LOW_HOPE_THRESHOLD)
+            if(hm.Hope > 0 && hm.Hope <= 100)
+            {
+                mod = hopeDecaySpeed;
+            }
+            if(hm.Hope < 0 && hm.Hope >= -100)
             {
                 mod = hopeRegenSpeed;
             }
+            hm.Hope += mod;
+            mod = 0;
             yield return new WaitForSeconds(1.0f);
         }
     }

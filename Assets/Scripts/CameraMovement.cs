@@ -22,7 +22,7 @@ public class CameraMovement : MonoBehaviour
     {
         if(!ClampMovementAllowed)
         {
-            Vector3 pos = new Vector3(Target.transform.position.x, Target.transform.position.y, transform.position.z);
+            Vector3 pos = new Vector3(Target.transform.position.x, Target.transform.position.y + 2, transform.position.z);
             transform.position = pos;
         }
     }

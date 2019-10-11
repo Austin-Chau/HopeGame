@@ -86,6 +86,7 @@
     <Compile Include="Assets\Anima2D\Scripts\SpriteMesh.cs" />
     <Compile Include="Assets\Anima2D\Scripts\SpriteMeshAnimation.cs" />
     <Compile Include="Assets\Anima2D\Scripts\SpriteMeshInstance.cs" />
+    <Compile Include="Assets\Background.cs" />
     <Compile Include="Assets\EnemyGroundSensor.cs" />
     <Compile Include="Assets\EnemyWallSensor.cs" />
     <Compile Include="Assets\Scripts\Actor.cs" />

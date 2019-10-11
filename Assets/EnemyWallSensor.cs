@@ -16,7 +16,6 @@ public class EnemyWallSensor : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(enteredWall);
         if (!enteredWall)
         {
             Enemy.flipDir();

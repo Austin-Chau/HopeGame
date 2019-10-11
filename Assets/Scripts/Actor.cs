@@ -12,15 +12,22 @@ public abstract class Actor : MonoBehaviour
     protected int knockbackForce = 300;
     
     float hitTimePeriod = .1f;
+    bool hasSpriteMesh = false;
 
     protected Animator anim;
     protected SpriteRenderer sr;
     protected Rigidbody2D rb;
+    protected SpriteMeshContainer smc;
 
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        if(sr == null)
+        {
+            smc = GetComponentInChildren<SpriteMeshContainer>();
+            hasSpriteMesh = true;
+        }
         anim = GetComponent<Animator>();
     }
 
@@ -32,7 +39,10 @@ public abstract class Actor : MonoBehaviour
     protected virtual void RegisterDamage(int damageVal)
     {
         anim.SetTrigger("Attacked");
-        StartCoroutine(FlashRed());
+        if (!hasSpriteMesh)
+            StartCoroutine(FlashRed());
+        else
+            smc.FlashRed(hitTimePeriod);
     }
 
     protected virtual void Knockback(Vector2 dir)
@@ -41,6 +51,11 @@ public abstract class Actor : MonoBehaviour
         rb.AddForce(dir * knockbackForce);
     }
 
+    /// <summary>
+    /// Coroutine for flashing the character red. Checks if actor has either a SpriteRenderer
+    /// or a SpriteMeshContainer as its child.
+    /// </summary>
+    /// <returns></returns>
     protected virtual IEnumerator FlashRed()
     {
         sr.color = Color.red;

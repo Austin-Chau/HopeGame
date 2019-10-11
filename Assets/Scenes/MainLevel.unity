@@ -406,7 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb9c5c0edc2dd9e45818f8d3d71daa68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackForce: 300
+  knockbackForce: 400
   speed: 8
   jumpForce: 600
   slashSpeed: 20
@@ -1730,6 +1730,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 770462451}
+  - component: {fileID: 770462452}
   m_Layer: 8
   m_Name: SpriteMeshes
   m_TagString: Untagged
@@ -1758,6 +1759,18 @@ Transform:
   m_Father: {fileID: 302116131}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &770462452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770462450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c9db9b5271c9cd49aa29823cd726468, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &847871882
 GameObject:
   m_ObjectHideFlags: 0

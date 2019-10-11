@@ -161,7 +161,6 @@ public class Player : Actor
     {
         Vector3 newPos = new Vector3(horizontal, 0);
         transform.position += newPos * speed * Time.deltaTime;
-        Debug.Log(transform.position);
 
         if (facingRight && horizontal < 0)
         {

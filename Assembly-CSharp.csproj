@@ -102,6 +102,7 @@
     <Compile Include="Assets\Scripts\ShakeBehaviour.cs" />
     <Compile Include="Assets\Scripts\Slash.cs" />
     <Compile Include="Assets\Scripts\Uphope.cs" />
+    <Compile Include="Assets\SpriteMeshContainer.cs" />
     <Compile Include="Assets\Test Garbage\FreePixelMob\Mobs.cs" />
     <Compile Include="Assets\Test Garbage\FreePixelMob\StateRandom.cs" />
     <None Include="Assets\Anima2D\Examples\Shaders\VisibleInsideMask.shader" />

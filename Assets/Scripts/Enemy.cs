@@ -84,8 +84,9 @@ public class Enemy : Actor
 
     public void flipDir()
     {
-        Debug.Log("flipDir fired");
         facingRight = !facingRight;
         sr.flipX = facingRight;
     }
+
+
 }

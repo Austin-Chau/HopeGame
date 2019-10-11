@@ -41,7 +41,7 @@ public abstract class Actor : MonoBehaviour
         rb.AddForce(dir * knockbackForce);
     }
 
-    protected IEnumerator FlashRed()
+    protected virtual IEnumerator FlashRed()
     {
         sr.color = Color.red;
         yield return new WaitForSeconds(hitTimePeriod);

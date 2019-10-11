@@ -86,7 +86,7 @@ public class Player : Actor
             }
         }
 
-        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        if (!anim.GetCurrentAnimatorStateInfo(1).IsName("Slash"))
         {
             if (Input.GetButtonDown("Slash"))
             {
@@ -161,16 +161,17 @@ public class Player : Actor
     {
         Vector3 newPos = new Vector3(horizontal, 0);
         transform.position += newPos * speed * Time.deltaTime;
+        Debug.Log(transform.position);
 
         if (facingRight && horizontal < 0)
         {
             facingRight = false;
-            sr.flipX = true;
+            flipX(true);
         }
         else if (horizontal > 0)
         {
-            sr.flipX = false;
             facingRight = true;
+            flipX(false);
         }
 
         anim.SetBool("isMoving", true);
@@ -210,5 +211,17 @@ public class Player : Actor
         dir.y = dir.normalized.y;
 
         rb.AddForce(dir * knockbackForce);
+    }
+
+    private void flipX(bool isFlipped)
+    {
+        transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * (isFlipped? -1 : 1),
+        transform.localScale.y,
+        transform.localScale.z);
+    }
+
+    protected override IEnumerator FlashRed()
+    {
+        yield return null;
     }
 }

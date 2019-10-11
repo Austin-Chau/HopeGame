@@ -618,6 +618,7 @@ MonoBehaviour:
   slashSpeed: 20
   jumpTimeThreshold: 0.5
   longJumpMultiplier: 1.5
+  lowHopeSpeedMultiplier: 1.5
 --- !u!50 &302116134
 Rigidbody2D:
   serializedVersion: 4

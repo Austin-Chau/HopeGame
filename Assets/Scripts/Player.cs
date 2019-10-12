@@ -74,7 +74,10 @@ public class Player : Actor
         if (Input.GetButtonDown("Jump"))
         {
             if (IsGrounded())
+            {
                 jumpTime = Time.time;
+                anim.SetBool("jumpCharge", true);
+            }
 
         }
 
@@ -87,6 +90,7 @@ public class Player : Actor
                 else
                     rb.AddForce(Vector2.up * jumpForce * longJumpMultiplier);
                 jumpTime = float.MaxValue;
+                anim.SetBool("jumpCharge", false);
             }
         }
 

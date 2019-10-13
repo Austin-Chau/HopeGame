@@ -20,9 +20,12 @@ public class HopeManager
     #region Singleton Setup
 
     private static HopeManager h;
+    private static Material material;
 
     public static HopeManager GetInstance()
     {
+        material = Resources.Load<Material>("Greyscale");
+
         if (h == null) h = new HopeManager();
         return h;
     }
@@ -31,7 +34,7 @@ public class HopeManager
 
     public HopeState state { get; private set; } = HopeState.Normal;
     
-    private float hope = 0;
+    private float hope = 100;
     public float Hope
     {
         get
@@ -44,6 +47,8 @@ public class HopeManager
             {
                 HopeChangeDelegate(value);
                 hope = value;
+                
+                material.SetColor("_Color", new Color((value + 100f) / 200f, 1, 1, 1 ));
 
                 if (value >= 66) state = HopeState.High;
                 else if (value <= -66) state = HopeState.Low;

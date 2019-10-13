@@ -142,7 +142,7 @@ public class Player : Actor
         }
 
         Slash slash = go.GetComponent<Slash>();
-        
+
 
         switch (HopeManager.GetInstance().state)
         {
@@ -189,7 +189,7 @@ public class Player : Actor
         anim.SetBool("isMoving", true);
     }
 
-    
+
     /// <summary>
     /// Checks if player is grounded or not.
     /// </summary>
@@ -212,12 +212,13 @@ public class Player : Actor
         {
             //Does flat damage for now.
             RegisterDamage(5);
-            HopeManager.GetInstance().Hope += -5;
+            HopeManager.GetInstance().Hope += -10;
             Knockback(transform.position - other.transform.position);
         }
     }
 
-    protected override void Knockback(Vector2 dir){
+    protected override void Knockback(Vector2 dir)
+    {
         rb.velocity = Vector3.zero;
 
         dir.y = dir.normalized.y;
@@ -227,7 +228,7 @@ public class Player : Actor
 
     private void flipX(bool isFlipped)
     {
-        transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * (isFlipped? -1 : 1),
+        transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * (isFlipped ? -1 : 1),
         transform.localScale.y,
         transform.localScale.z);
     }

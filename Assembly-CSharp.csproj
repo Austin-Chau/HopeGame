@@ -91,6 +91,7 @@
     <Compile Include="Assets\Scripts\Background.cs" />
     <Compile Include="Assets\Scripts\Bullet.cs" />
     <Compile Include="Assets\Scripts\CameraMovement.cs" />
+    <Compile Include="Assets\Scripts\CoroutineUtil.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\EnemyGroundSensor.cs" />
     <Compile Include="Assets\Scripts\EnemyPatroller.cs" />
@@ -110,6 +111,7 @@
     <None Include="Assets\Test Garbage\FreePixelMob\ReadMe.txt" />
     <None Include="Assets\Anima2D\Examples\Shaders\VisibleOutsideMask.shader" />
     <None Include="Assets\Anima2D\Version.txt" />
+    <None Include="Assets\Resources\Shader.shader" />
     <None Include="Assets\Anima2D\Examples\Shaders\Unlit-Alpha-Cull-off.shader" />
     <None Include="Assets\Anima2D\Licenses.txt" />
     <None Include="Assets\Anima2D\Examples\Shaders\VertexLitOneDirectional.shader" />

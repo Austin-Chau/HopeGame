@@ -1,0 +1,280 @@
+fileFormatVersion: 2
+guid: f9f7b53f6ccb20a4bb62e5435f814de0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3020192241782005183
+    second: Enemy_Seperated_X1_0
+  - first:
+      213: -5979893997740546078
+    second: Enemy_Seperated_X1_1
+  - first:
+      213: 7946527092235261253
+    second: Enemy_Seperated_X1_2
+  - first:
+      213: -5490782913624993623
+    second: Enemy_Seperated_X1_3
+  - first:
+      213: 555623017118796045
+    second: Enemy_Seperated_X1_4
+  - first:
+      213: -6768081610452939795
+    second: Enemy_Seperated_X1_5
+  - first:
+      213: -382921282010016660
+    second: Enemy_Seperated_X1_6
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Enemy_Seperated_X1_0
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 1451
+        width: 376
+        height: 396
+      alignment: 9
+      pivot: {x: 0.4986702, y: 0.4810606}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49d5461b91cba6548b3b08023b9a68c2
+      internalID: -3020192241782005183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Seperated_X1_1
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 787
+        width: 210
+        height: 528
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 680e1938b21d96044b336b6ef22c2115
+      internalID: -5979893997740546078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Seperated_X1_2
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 656
+        width: 507
+        height: 762
+      alignment: 9
+      pivot: {x: 0.4723866, y: 0.5072178}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4154877e8d03204f89a2b779b242451
+      internalID: 7946527092235261253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Seperated_X1_3
+      rect:
+        serializedVersion: 2
+        x: 868
+        y: 787
+        width: 205
+        height: 501
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d692bf5331b375449685dea6f817745
+      internalID: -5490782913624993623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Seperated_X1_4
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 85
+        width: 241
+        height: 676
+      alignment: 9
+      pivot: {x: 0.5020747, y: 0.49926037}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6ca739546ca5fe4e9b59ccf89c88b4c
+      internalID: 555623017118796045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Seperated_X1_5
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 177.49998
+        width: 102
+        height: 442
+      alignment: 9
+      pivot: {x: 0.5, y: 0.49660638}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73855c32fb9018a44bcb234731dab06f
+      internalID: -6768081610452939795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Seperated_X1_6
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 167.00002
+        width: 133
+        height: 434
+      alignment: 9
+      pivot: {x: 0.5, y: 0.49999997}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4542a20d4df628040b829184f6aa1353
+      internalID: -382921282010016660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: b2ef83616d9582a4aba5dd2a70b4b98e
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 637066165191152604
+  assetBundleName: 
+  assetBundleVariant: 

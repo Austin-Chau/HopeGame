@@ -23,10 +23,19 @@ public class Enemy : Actor
     //remove this when better system is in place.
     public GameObject upHope;
 
-    
+    GameObject Sensors;
     bool facingRight = false;
-    float moveDir; 
-   
+    bool recentlyFlipped = false;
+    float moveDir;
+
+    protected override void Start()
+    {
+        base.Start();
+
+        Sensors = transform.Find("Sensors").gameObject;
+        
+    }
+
     private void Update()
     {
         if (facingRight) moveDir = 1;
@@ -52,6 +61,7 @@ public class Enemy : Actor
             Attack attack = other.GetComponent<Attack>();
             if (attack == null) Debug.LogError("Colliding Object does not have Attack script", other);
             RegisterDamage(attack.damage);
+
             Knockback(transform.position - other.transform.position);
         }
     }
@@ -84,9 +94,34 @@ public class Enemy : Actor
 
     public void flipDir()
     {
-        facingRight = !facingRight;
-        sr.flipX = facingRight;
+        if (!recentlyFlipped)
+        {
+            recentlyFlipped = true;
+            facingRight = !facingRight;
+            flipX(facingRight);
+        }
     }
 
+    private void flipX(bool isFlipped)
+    {
+        
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * (isFlipped ? -1 : 1),
+            transform.localScale.y,
+            transform.localScale.z);
+
+            StartCoroutine(CannotFlip());
+    }
+
+    /// <summary>
+    /// Sensors are bugging up because of swapping sides so this is my not so elegant solution.
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator CannotFlip()
+    {
+
+        yield return new WaitForSeconds(.5f);
+
+        recentlyFlipped = false;
+    }
 
 }

@@ -58,7 +58,6 @@ public abstract class Actor : MonoBehaviour
     /// <returns></returns>
     protected virtual IEnumerator FlashRed()
     {
-        Debug.Log("Changing color");
         sr.color = Color.red;
         yield return new WaitForSeconds(hitTimePeriod);
         sr.color = Color.white;

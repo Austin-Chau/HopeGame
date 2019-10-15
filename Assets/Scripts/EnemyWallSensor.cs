@@ -7,7 +7,7 @@ public class EnemyWallSensor : MonoBehaviour
     [Tooltip("Enemy object which this is a sensor to.")]
     public Enemy Enemy;
 
-    bool enteredWall;
+    public bool enteredWall;
 
     private void Start()
     {
@@ -22,6 +22,8 @@ public class EnemyWallSensor : MonoBehaviour
             enteredWall = true;
         }
     }
+
+
 
     private void OnTriggerExit2D(Collider2D collision)
     {

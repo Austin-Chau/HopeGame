@@ -105,10 +105,7 @@
     <Compile Include="Assets\Scripts\Slash.cs" />
     <Compile Include="Assets\Scripts\SpriteMeshContainer.cs" />
     <Compile Include="Assets\Scripts\Uphope.cs" />
-    <Compile Include="Assets\Test Garbage\FreePixelMob\Mobs.cs" />
-    <Compile Include="Assets\Test Garbage\FreePixelMob\StateRandom.cs" />
     <None Include="Assets\Anima2D\Examples\Shaders\VisibleInsideMask.shader" />
-    <None Include="Assets\Test Garbage\FreePixelMob\ReadMe.txt" />
     <None Include="Assets\Anima2D\Examples\Shaders\VisibleOutsideMask.shader" />
     <None Include="Assets\Anima2D\Version.txt" />
     <None Include="Assets\Resources\Shader.shader" />

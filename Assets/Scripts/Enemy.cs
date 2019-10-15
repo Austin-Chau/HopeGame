@@ -137,8 +137,7 @@ public class Enemy : Actor
         float dirXSign = dir.x / Mathf.Abs(dir.x);
 
         Vector2 newDir = new Vector2(dirXSign, .25f);
-
-        Debug.Log(newDir * knockbackForce);
+        
         rb.AddForce(newDir * knockbackForce);
     }
 

@@ -325,6 +325,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1730377276642071887}
+  - component: {fileID: 6787257093660827679}
   m_Layer: 11
   m_Name: SpriteMeshes
   m_TagString: Untagged
@@ -353,6 +354,18 @@ Transform:
   m_Father: {fileID: 1730377277953447586}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6787257093660827679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1730377276642071884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c9db9b5271c9cd49aa29823cd726468, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1730377276676528707
 GameObject:
   m_ObjectHideFlags: 0

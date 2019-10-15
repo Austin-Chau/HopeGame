@@ -68,8 +68,20 @@ public class Enemy : Actor
 
             Knockback(playerDirection);
 
-            if (playerDirection.x < 0 && !facingRight) flipDir();
-            if (playerDirection.x > 0 && facingRight) flipDir();
+            if (playerDirection.x < 0 && !facingRight ||
+                playerDirection.x > 0 && facingRight)
+            {
+                flipDir();
+                RaiseHope();
+            }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log(collision.gameObject);
+        if (collision.gameObject.GetComponent<Enemy>() != null) {
+            flipDir();
         }
     }
 
@@ -85,11 +97,7 @@ public class Enemy : Actor
 
         if (isVulnerable)
         {
-            HopeManager.GetInstance().Hope += 15;
-
-            GameObject go = Instantiate(upHope);
-            go.transform.position = new Vector3(transform.position.x + (Random.value * 2), transform.position.y + (Random.value * 2),
-                transform.position.z);
+            RaiseHope();
         }
 
         if (health <= 0)
@@ -141,4 +149,12 @@ public class Enemy : Actor
         rb.AddForce(newDir * knockbackForce);
     }
 
+    private void RaiseHope()
+    {
+        HopeManager.GetInstance().Hope += 15;
+
+        GameObject go = Instantiate(upHope);
+        go.transform.position = new Vector3(transform.position.x + (Random.value * 2), transform.position.y + (Random.value * 2),
+            transform.position.z);
+    }
 }

@@ -34,6 +34,7 @@ public class HopeManager
 
     public HopeState state { get; private set; } = HopeState.Normal;
     
+
     private float hope = 0;
     public float Hope
     {

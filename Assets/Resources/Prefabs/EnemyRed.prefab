@@ -1596,7 +1596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec3bd5375c83744ebdf299409788ba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackForce: 100
+  knockbackForce: 400
   health: 50
   isAttacking: 0
   isVulnerable: 0
@@ -1905,6 +1905,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 321555207131746919}
+  enteredWall: 0
 --- !u!1 &7175968963771805721
 GameObject:
   m_ObjectHideFlags: 0
@@ -1976,6 +1977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 321555207131746919}
+  enteredWall: 0
 --- !u!1 &8640189755168712844
 GameObject:
   m_ObjectHideFlags: 0

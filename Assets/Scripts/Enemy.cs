@@ -24,6 +24,7 @@ public class Enemy : Actor
     public GameObject upHope;
 
     GameObject Sensors;
+    GameObject Player;
     bool facingRight = false;
     bool recentlyFlipped = false;
     float moveDir;
@@ -32,6 +33,7 @@ public class Enemy : Actor
     {
         base.Start();
 
+        Player = GameObject.Find("Hero");
         Sensors = transform.Find("Sensors").gameObject;
         
     }
@@ -45,7 +47,7 @@ public class Enemy : Actor
 
 
         //Yup this is a terrible way to do this
-        if(Random.value > .99 && !isAttacking)
+        if(Random.value > .5 && !isAttacking)
         {
             anim.ResetTrigger("Attacked");
             isAttacking = true;
@@ -62,7 +64,12 @@ public class Enemy : Actor
             if (attack == null) Debug.LogError("Colliding Object does not have Attack script", other);
             RegisterDamage(attack.damage);
 
-            Knockback(transform.position - other.transform.position);
+            Vector3 playerDirection = transform.position - Player.transform.position;
+
+            Knockback(playerDirection);
+
+            if (playerDirection.x < 0 && !facingRight) flipDir();
+            if (playerDirection.x > 0 && facingRight) flipDir();
         }
     }
 
@@ -122,6 +129,17 @@ public class Enemy : Actor
         yield return new WaitForSeconds(.5f);
 
         recentlyFlipped = false;
+    }
+
+    protected override void Knockback(Vector2 dir)
+    {
+        rb.velocity = Vector3.zero;
+        float dirXSign = dir.x / Mathf.Abs(dir.x);
+
+        Vector2 newDir = new Vector2(dirXSign, .25f);
+
+        Debug.Log(newDir * knockbackForce);
+        rb.AddForce(newDir * knockbackForce);
     }
 
 }

@@ -18,6 +18,7 @@ public class EnemyChargeBehaviour : StateMachineBehaviour
         animator.ResetTrigger("Charge");
         enemy = animator.GetComponent<Enemy>();
         startTime = Time.time;
+        enemy.isVulnerable = true;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -27,6 +28,11 @@ public class EnemyChargeBehaviour : StateMachineBehaviour
         {
             animator.SetTrigger("Attack");
         }
+    }
+
+    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        enemy.isVulnerable = false;
     }
 
 }

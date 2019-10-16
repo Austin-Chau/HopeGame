@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
         {
             if(hm.Hope > 0 && hm.Hope <= 100)
             {
-                mod = hopeDecaySpeed;
+                mod = -hopeDecaySpeed;
             }
             if(hm.Hope < 0 && hm.Hope >= -100)
             {

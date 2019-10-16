@@ -11,10 +11,9 @@ public class Enemy : Actor
     [SerializeField]
     [Tooltip("Determines if enemy is attacking")]
     private bool isAttacking;
-
-    [SerializeField]
+    
     [Tooltip("True when vulnerable frames are showing.")]
-    private bool isVulnerable = false;
+    public bool isVulnerable = false;
 
 
 
@@ -94,18 +93,12 @@ public class Enemy : Actor
         {
             recentlyFlipped = true;
             facingRight = !facingRight;
-            flipX(facingRight);
-        }
-    }
-
-    private void flipX(bool isFlipped)
-    {
-        
-            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * (isFlipped ? -1 : 1),
-            transform.localScale.y,
-            transform.localScale.z);
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * (facingRight ? -1 : 1),
+                transform.localScale.y,
+                transform.localScale.z);
 
             StartCoroutine(CannotFlip());
+        }
     }
 
     /// <summary>
@@ -137,10 +130,5 @@ public class Enemy : Actor
         GameObject go = Instantiate(upHope);
         go.transform.position = new Vector3(transform.position.x + (Random.value * 2), transform.position.y + (Random.value * 2),
             transform.position.z);
-    }
-
-    public void FreezeAnimation()
-    {
-
     }
 }

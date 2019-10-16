@@ -99,6 +99,7 @@ public class Player : Actor
             if (Input.GetButtonDown("Slash"))
             {
                 Slash(1f);
+                
             }
 
 

@@ -23,11 +23,11 @@ public class HopeMeter : MonoBehaviour
     public void GetHope(float hope)
     {
         slider.value = hope;
-        if (hope < -66)
+        if (hope < -50)
         {
             fill.color = Color.red;
         }
-        else if(hope > 66)
+        else if(hope > 50)
         {
             fill.color = Color.yellow;
         }

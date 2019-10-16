@@ -55,6 +55,7 @@ public class Enemy : Actor
                 flipDir();
                 RaiseHope();
             }
+
         }
     }
 

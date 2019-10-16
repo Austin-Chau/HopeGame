@@ -15,10 +15,7 @@ public class Attack : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(HopeManager.GetInstance().state == HopeState.High)
-        {
-            Camera.main.gameObject.GetComponent<CameraMovement>().ZoomCamera();
-        }
+
         Destroy(gameObject);
     }
 }

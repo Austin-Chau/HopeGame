@@ -23,6 +23,24 @@ public class Slash : Attack
         StartCoroutine(MoveAndFade());
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="collision"></param>
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        GameObject other = collision.gameObject;
+        if(other.GetComponent<Enemy>() != null)
+        {
+            if(Mathf.Abs(rb.velocity.x) == 1)
+            {
+                if(HopeManager.GetInstance().state == HopeState.High)
+                {
+                    Camera.main.gameObject.GetComponent<CameraMovement>().ZoomCamera();
+                }
+            }
+        }
+    }
 
     public void SetRotation(Vector2 dir)
     {
@@ -52,6 +70,7 @@ public class Slash : Attack
         }
         Destroy(gameObject);
     }
+
 
 
 }

@@ -1609,12 +1609,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec3bd5375c83744ebdf299409788ba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackForce: 400
+  knockbackForce: 150
   health: 50
   isAttacking: 0
   isVulnerable: 0
-  speed: 5
   upHope: {fileID: 70575937129041111, guid: 9661448b8f67f8f48aa51422b74f1ed3, type: 3}
+  facingRight: 0
 --- !u!1 &1730377278126409304
 GameObject:
   m_ObjectHideFlags: 0

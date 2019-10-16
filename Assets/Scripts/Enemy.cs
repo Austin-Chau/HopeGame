@@ -16,16 +16,14 @@ public class Enemy : Actor
     [Tooltip("True when vulnerable frames are showing.")]
     private bool isVulnerable = false;
 
-    [SerializeField]
-    [Tooltip("Speed of enemy as it patrols")]
-    private float speed = 5;
+
 
     //remove this when better system is in place.
     public GameObject upHope;
+    public bool facingRight = false;
 
     GameObject Sensors;
     GameObject Player;
-    bool facingRight = false;
     bool recentlyFlipped = false;
     float moveDir;
 
@@ -36,23 +34,6 @@ public class Enemy : Actor
         Player = GameObject.Find("Hero");
         Sensors = transform.Find("Sensors").gameObject;
         
-    }
-
-    private void Update()
-    {
-        if (facingRight) moveDir = 1;
-        else moveDir = -1;
-        transform.Translate(moveDir * new Vector2(speed, 0) * Time.deltaTime);
-
-
-
-        //Yup this is a terrible way to do this
-        if(Random.value > .5 && !isAttacking)
-        {
-            anim.ResetTrigger("Attacked");
-            isAttacking = true;
-            anim.SetTrigger("Attack");
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -79,7 +60,6 @@ public class Enemy : Actor
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.gameObject);
         if (collision.gameObject.GetComponent<Enemy>() != null) {
             flipDir();
         }
@@ -102,7 +82,7 @@ public class Enemy : Actor
 
         if (health <= 0)
         {
-            GameManager.s.RaiseKillCount();
+            //GameManager.s.RaiseKillCount();
             Destroy(gameObject);
         }
     }
@@ -144,7 +124,7 @@ public class Enemy : Actor
         rb.velocity = Vector3.zero;
         float dirXSign = dir.x / Mathf.Abs(dir.x);
 
-        Vector2 newDir = new Vector2(dirXSign, .25f);
+        Vector2 newDir = new Vector2(dirXSign, .5f);
         
         rb.AddForce(newDir * knockbackForce);
     }
@@ -156,5 +136,10 @@ public class Enemy : Actor
         GameObject go = Instantiate(upHope);
         go.transform.position = new Vector3(transform.position.x + (Random.value * 2), transform.position.y + (Random.value * 2),
             transform.position.z);
+    }
+
+    public void FreezeAnimation()
+    {
+
     }
 }

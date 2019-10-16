@@ -18,7 +18,6 @@ public class EnemyChargeBehaviour : StateMachineBehaviour
         animator.ResetTrigger("Charge");
         enemy = animator.GetComponent<Enemy>();
         startTime = Time.time;
-        Debug.Log(startTime);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

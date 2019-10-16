@@ -51,8 +51,8 @@ public class HopeManager
                 
                 material.SetColor("_Color", new Color((value + 100f) / 200f, 1, 1, 1 ));
 
-                if (value >= 66) state = HopeState.High;
-                else if (value <= -66) state = HopeState.Low;
+                if (value >= 50) state = HopeState.High;
+                else if (value <= -50) state = HopeState.Low;
                 else state = HopeState.Normal;
             }
         }

@@ -86,6 +86,7 @@
     <Compile Include="Assets\Anima2D\Scripts\SpriteMesh.cs" />
     <Compile Include="Assets\Anima2D\Scripts\SpriteMeshAnimation.cs" />
     <Compile Include="Assets\Anima2D\Scripts\SpriteMeshInstance.cs" />
+    <Compile Include="Assets\AudioManager.cs" />
     <Compile Include="Assets\EnemyAttackBehaviour.cs" />
     <Compile Include="Assets\EnemyChargeBehaviour.cs" />
     <Compile Include="Assets\EnemyWalkBehaviour.cs" />

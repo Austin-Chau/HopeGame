@@ -1611,7 +1611,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockbackForce: 150
-  health: 50
+  maxHealth: 30
+  health: 30
   isAttacking: 0
   isVulnerable: 0
   upHope: {fileID: 70575937129041111, guid: 9661448b8f67f8f48aa51422b74f1ed3, type: 3}

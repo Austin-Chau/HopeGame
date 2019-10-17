@@ -92,6 +92,7 @@
     <Compile Include="Assets\Scripts\AudioName.cs" />
     <Compile Include="Assets\Scripts\AudioPlayer.cs" />
     <Compile Include="Assets\Scripts\Background.cs" />
+    <Compile Include="Assets\Scripts\BackgroundMusicPlayer.cs" />
     <Compile Include="Assets\Scripts\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\CoroutineUtil.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />

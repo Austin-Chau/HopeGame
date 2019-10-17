@@ -49,8 +49,8 @@ public class Enemy : Actor
             RegisterDamage(attack.damage);
 
             Vector3 playerDirection = transform.position - Player.transform.position;
-
-            Knockback(playerDirection);
+            if (attack.slashType == SlashType.Melee) 
+                Knockback(playerDirection);
 
             if (playerDirection.x < 0 && !facingRight ||
                 playerDirection.x > 0 && facingRight)

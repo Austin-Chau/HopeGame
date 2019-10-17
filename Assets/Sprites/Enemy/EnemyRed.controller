@@ -185,6 +185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemySearchDistance: 5
   speed: 5
+  attackChance: 0.7
 --- !u!1101 &-1939191140466696441
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

@@ -8,5 +8,7 @@
         AddClip(AudioName.ActorHit, "ActorHit");
         AddClip(AudioName.CrowdCheer, "HighHopeCheer");
         AddClip(AudioName.CrowdGasp, "HopeLossGasp");
+        AddClip(AudioName.LowJump, "LowJump");
+        AddClip(AudioName.HighJump, "HighJump");
     }
 }

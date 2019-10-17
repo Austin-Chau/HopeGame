@@ -5,5 +5,7 @@
     EnemySlash,
     ActorHit,
     CrowdCheer,
-    CrowdGasp
+    CrowdGasp,
+    LowJump,
+    HighJump
 }

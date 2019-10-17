@@ -22,7 +22,7 @@ public class Player : Actor
 
     [SerializeField]
     [Tooltip("Time between press and release for high jump.")]
-    private float jumpTimeThreshold = .5f;
+    private float jumpTimeThreshold = .25f;
 
     [SerializeField]
     [Tooltip("Amount of force jump is multiplied by.")]
@@ -86,9 +86,15 @@ public class Player : Actor
             if (IsGrounded())
             {
                 if (Time.time - jumpTime <= jumpTimeThreshold)
+                {
                     rb.AddForce(Vector2.up * jumpForce);
+                    AudioLibrary.Play(AudioName.LowJump);
+                }
                 else
+                {
                     rb.AddForce(Vector2.up * jumpForce * longJumpMultiplier);
+                    AudioLibrary.Play(AudioName.HighJump);
+                }
                 jumpTime = float.MaxValue;
                 anim.SetBool("jumpCharge", false);
             }
@@ -148,26 +154,31 @@ public class Player : Actor
                 0);
         }
 
-        float divider = 1f;
-        if (slash.slashType == SlashType.Ranged) divider = 2f;
-        switch (HopeManager.GetInstance().state)
+        if (slash.slashType == SlashType.Ranged)
         {
-            case HopeState.Low:
-                slash.damage = 0;
-                AudioLibrary.Play(AudioName.PlayerSlash);
-                break;
-            case HopeState.Normal:
-                slash.damage = 5;
-                AudioLibrary.Play(AudioName.PlayerSlash);
-                break;
-            case HopeState.High:
-                slash.damage = 15;
-                AudioLibrary.Play(AudioName.PlayerHighSlash);
-                break;
+            slash.damage = 1;
+            AudioLibrary.Play(AudioName.PlayerSlash);
+        }
+        else
+        {
+            switch (HopeManager.GetInstance().state)
+            {
+                case HopeState.Low:
+                    slash.damage = 0;
+                    AudioLibrary.Play(AudioName.PlayerSlash);
+                    break;
+                case HopeState.Normal:
+                    slash.damage = 5;
+                    AudioLibrary.Play(AudioName.PlayerSlash);
+                    break;
+                case HopeState.High:
+                    slash.damage = 10;
+                    AudioLibrary.Play(AudioName.PlayerHighSlash);
+                    break;
 
+            }
         }
 
-        slash.damage = (int)(slash.damage / divider);
         slash.SetRotationAndMove(dir * speed);
 
     }

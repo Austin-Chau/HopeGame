@@ -46,6 +46,7 @@ public class Slash : MonoBehaviour
                 {
                     AudioLibrary.Play(AudioName.CrowdCheer);
                     Camera.main.gameObject.GetComponent<CameraMovement>().ZoomCamera();
+                    HopeManager.GetInstance().Hope -= 1;
                 }
             }
         }

@@ -12,6 +12,11 @@ public class EnemyWalkBehaviour : StateMachineBehaviour
     [Tooltip("Speed of enemy as it patrols")]
     private float speed = 5;
 
+    [SerializeField]
+    [Tooltip("Chance that enemy will attack every seconds.")]
+    private float attackChance = .7f;
+
+    float currentTime = 0;
     Enemy enemy;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -28,15 +33,18 @@ public class EnemyWalkBehaviour : StateMachineBehaviour
         if (enemy.facingRight) moveDir = 1;
         else moveDir = -1;
         enemy.transform.Translate(moveDir * new Vector2(speed, 0) * Time.deltaTime);
-
-        if (CheckForPlayer())
+        if (currentTime + 1f < Time.time)
         {
-            animator.ResetTrigger("Attacked");
-            animator.SetTrigger("Charge");
-        }
-        else
-        {
-            animator.ResetTrigger("Charge");
+            if (CheckForPlayer() && Random.value < attackChance)
+            {
+                animator.ResetTrigger("Attacked");
+                animator.SetTrigger("Charge");
+            }
+            else
+            {
+                animator.ResetTrigger("Charge");
+            }
+            currentTime = Time.time;
         }
     }
 

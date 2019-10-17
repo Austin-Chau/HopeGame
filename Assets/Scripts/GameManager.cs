@@ -12,11 +12,11 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     [Tooltip("Restores 1 point every n seconds when hope is < 0")]
-    private float hopeRegenSpeed = 1.0f;
+    private int hopeRegenSpeed = 1;
 
     [SerializeField]
     [Tooltip("Subtracts 1 point every n seconds when hope is > 0")]
-    private float hopeDecaySpeed = 1.0f;
+    private int hopeDecaySpeed = 1;
 
     private const int LOW_HOPE_THRESHOLD = -66;
     private const int HIGH_HOPE_THRESHOLD = 66;
@@ -44,21 +44,21 @@ public class GameManager : MonoBehaviour
 
     IEnumerator AdjustHope()
     {
-        float mod = 0;
+        int mod = 0;
 
         while (true)
         {
-            if(hm.Hope > 0 && hm.Hope <= 100)
+            if(hm.Hope > 5 && hm.Hope <= 9)
             {
                 mod = -hopeDecaySpeed;
             }
-            if(hm.Hope < 0 && hm.Hope >= -100)
+            if(hm.Hope < 5 && hm.Hope >= 0)
             {
                 mod = hopeRegenSpeed;
             }
             hm.Hope += mod;
             mod = 0;
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(10.0f);
         }
     }
 

@@ -225,13 +225,13 @@ public class Player : Actor
                 asi.IsName("Idle"))
             {
                 RegisterDamage(5);
-                HopeManager.GetInstance().Hope += -30;
+                HopeManager.GetInstance().Hope += -2;
                 AudioLibrary.Play(AudioName.CrowdGasp);
             }
             else
             {
                 RegisterDamage(5);
-                HopeManager.GetInstance().Hope += -10;
+                HopeManager.GetInstance().Hope += -1;
             }
             Knockback(transform.position - other.transform.position);
         }

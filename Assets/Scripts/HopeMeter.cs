@@ -6,34 +6,24 @@ using UnityEngine.UI;
 
 public class HopeMeter : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject FillArea;
-
-    Slider slider;
-    Image fill;
+    Image image;
+    Sprite[] gauges = new Sprite[10];
 
     private void Start()
     {
-        slider = GetComponent<Slider>();
-        fill = FillArea.GetComponentInChildren<Image>();
-        if (fill == null) Debug.LogError("Fill was not found in gameObject " + gameObject);
-        HopeManager.HopeChangeDelegate += GetHope;
+        image = GetComponentInChildren<Image>();
+        if (image == null) Debug.LogError("Image was not found in gameObject " + gameObject);
+        HopeManager.HopeChangeDelegate += UpdateHope;
+
+        for(int i = 0; i < 10; i++)
+        {
+            gauges[i] = Resources.Load<Sprite>("Sprites/HopeMeter/HopeGauge_" + i);
+        }
     }
 
-    public void GetHope(float hope)
+    public void UpdateHope(int hope)
     {
-        slider.value = hope;
-        if (hope < -30)
-        {
-            fill.color = Color.red;
-        }
-        else if(hope > 30)
-        {
-            fill.color = Color.yellow;
-        }
-        else
-        {
-            fill.color = Color.cyan;
-        }
+
+        image.sprite = gauges[hope];
     }
 }

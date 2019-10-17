@@ -134,7 +134,7 @@ public class Enemy : Actor
 
     private void RaiseHope()
     {
-        HopeManager.GetInstance().Hope += 15;
+        HopeManager.GetInstance().Hope += 1;
 
         GameObject go = Instantiate(upHope);
         go.transform.position = new Vector3(transform.position.x + (Random.value * 2), transform.position.y + (Random.value * 2),

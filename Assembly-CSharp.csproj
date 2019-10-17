@@ -102,6 +102,8 @@
     <Compile Include="Assets\Scripts\EnemyWalkBehaviour.cs" />
     <Compile Include="Assets\Scripts\EnemyWallSensor.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\HealthBar.cs" />
+    <Compile Include="Assets\Scripts\HealthBarGenerator.cs" />
     <Compile Include="Assets\Scripts\HopeManager.cs" />
     <Compile Include="Assets\Scripts\HopeMeter.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />

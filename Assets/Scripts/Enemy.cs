@@ -6,8 +6,11 @@ public class Enemy : Actor
 {
     [SerializeField]
     [Tooltip("Health of Enemy. Enemy is destroyed when health goes to 0.")]
-    private int health = 10;
-    
+    private int maxHealth = 10;
+
+    [SerializeField]
+    private int health = 0;
+
     [SerializeField]
     [Tooltip("Determines if enemy is attacking")]
     private bool isAttacking;
@@ -16,11 +19,11 @@ public class Enemy : Actor
     public bool isVulnerable = false;
 
 
-
     //remove this when better system is in place.
     public GameObject upHope;
     public bool facingRight = false;
 
+    
     GameObject Sensors;
     GameObject Player;
     bool recentlyFlipped = false;
@@ -30,6 +33,7 @@ public class Enemy : Actor
     {
         base.Start();
 
+        health = maxHealth;
         Player = GameObject.Find("Hero");
         Sensors = transform.Find("Sensors").gameObject;
         
@@ -101,6 +105,11 @@ public class Enemy : Actor
         }
     }
 
+    public float GetHealthPercentage()
+    {
+        return (float)health / maxHealth;
+    }
+
     /// <summary>
     /// Sensors are bugging up because of swapping sides so this is my not so elegant solution.
     /// </summary>
@@ -131,4 +140,6 @@ public class Enemy : Actor
         go.transform.position = new Vector3(transform.position.x + (Random.value * 2), transform.position.y + (Random.value * 2),
             transform.position.z);
     }
+
+
 }

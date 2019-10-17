@@ -1269,7 +1269,7 @@ PrefabInstance:
     - target: {fileID: 1730377277953447586, guid: 4650220ae648dd94f9c91f139ab65e87,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1730377277953447586, guid: 4650220ae648dd94f9c91f139ab65e87,
         type: 3}
@@ -12473,11 +12473,11 @@ Transform:
   m_LocalPosition: {x: 6.508322, y: 1.7468617, z: -5.921875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 609256875}
   - {fileID: 251437137}
   - {fileID: 1617985987}
   - {fileID: 1568449371}
   - {fileID: 866626259}
-  - {fileID: 609256875}
   - {fileID: 2103208351}
   - {fileID: 1377772469}
   m_Father: {fileID: 0}
@@ -30104,7 +30104,7 @@ PrefabInstance:
     - target: {fileID: 1730377277953447586, guid: 4650220ae648dd94f9c91f139ab65e87,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1730377277953447586, guid: 4650220ae648dd94f9c91f139ab65e87,
         type: 3}
@@ -30534,7 +30534,7 @@ PrefabInstance:
     - target: {fileID: 1730377277953447586, guid: 4650220ae648dd94f9c91f139ab65e87,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1730377277953447586, guid: 4650220ae648dd94f9c91f139ab65e87,
         type: 3}
@@ -30910,7 +30910,7 @@ PrefabInstance:
     - target: {fileID: 1730377277953447586, guid: 4650220ae648dd94f9c91f139ab65e87,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1730377277953447586, guid: 4650220ae648dd94f9c91f139ab65e87,
         type: 3}
@@ -31458,6 +31458,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 553546283}
+  - {fileID: 2102295077}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -32054,6 +32055,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2077633976}
   m_CullTransparentMesh: 0
+--- !u!1 &2102295076
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2102295077}
+  - component: {fileID: 2102295078}
+  m_Layer: 5
+  m_Name: Enemy Health Bar Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2102295077
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102295076}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1775063542}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2102295078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102295076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5e6d31d2ba410748be199e616e9096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2103208350
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32566,7 +32615,7 @@ PrefabInstance:
     - target: {fileID: 1730377277953447586, guid: 4650220ae648dd94f9c91f139ab65e87,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1730377277953447586, guid: 4650220ae648dd94f9c91f139ab65e87,
         type: 3}

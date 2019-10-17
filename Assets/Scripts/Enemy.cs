@@ -40,7 +40,7 @@ public class Enemy : Actor
         GameObject other = collision.gameObject;
         if (other.layer == LayerMask.NameToLayer("PlayerAttacks"))
         {
-            Attack attack = other.GetComponent<Attack>();
+            Slash attack = other.GetComponent<Slash>();
             if (attack == null) Debug.LogError("Colliding Object does not have Attack script", other);
             RegisterDamage(attack.damage);
 

@@ -118,9 +118,15 @@ public class Player : Actor
         anim.SetTrigger("Slash");
         GameObject go = Instantiate(Resources.Load<GameObject>("Prefabs/Slash"));
         Vector2 dir = Vector2.right;
+        Slash slash = go.GetComponent<Slash>();
 
         if (speed == 1)
+        {
+            slash.slashType = SlashType.Melee;
             go.transform.parent = tr;
+        }
+        else
+            slash.slashType = SlashType.Ranged;
         go.transform.position = tr.position;
 
         if (horizontal == 0 && vertical == 0)
@@ -142,26 +148,28 @@ public class Player : Actor
                 0);
         }
 
-        Slash slash = go.GetComponent<Slash>();
-
-
+        float divider = 1f;
+        if (slash.slashType == SlashType.Ranged) divider = 2f;
         switch (HopeManager.GetInstance().state)
         {
             case HopeState.Low:
                 slash.damage = 0;
+                AudioLibrary.Play(AudioName.PlayerSlash);
                 break;
             case HopeState.Normal:
                 slash.damage = 5;
+                AudioLibrary.Play(AudioName.PlayerSlash);
                 break;
             case HopeState.High:
                 slash.damage = 15;
+                AudioLibrary.Play(AudioName.PlayerHighSlash);
                 break;
 
         }
 
+        slash.damage = (int)(slash.damage / divider);
         slash.SetRotationAndMove(dir * speed);
 
-        AudioLibrary.Play(AudioName.PlayerSlash);
     }
 
     /// <summary>
@@ -212,9 +220,19 @@ public class Player : Actor
         GameObject other = collision.gameObject;
         if (other.layer == LayerMask.NameToLayer("Enemy"))
         {
-            //Does flat damage for now.
-            RegisterDamage(5);
-            HopeManager.GetInstance().Hope += -10;
+            AnimatorStateInfo asi = other.GetComponent<Animator>().GetNextAnimatorStateInfo(0);
+            if (asi.IsName("Attack") ||
+                asi.IsName("Idle"))
+            {
+                RegisterDamage(5);
+                HopeManager.GetInstance().Hope += -30;
+                AudioLibrary.Play(AudioName.CrowdGasp);
+            }
+            else
+            {
+                RegisterDamage(5);
+                HopeManager.GetInstance().Hope += -10;
+            }
             Knockback(transform.position - other.transform.position);
         }
     }

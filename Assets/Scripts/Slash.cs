@@ -2,12 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Slash : Attack
+public enum SlashType { Melee, Ranged };
+
+public class Slash : MonoBehaviour
 {
     [SerializeField]
     [Tooltip("How long the slash lasts in seconds.")]
     private float lifetime = .5f;
 
+
+    public int damage = 1;
+
+    public SlashType slashType = SlashType.Melee;
+
+    protected Transform tr;
     SpriteRenderer sr;
     Rigidbody2D rb;
 
@@ -36,6 +44,7 @@ public class Slash : Attack
             {
                 if(HopeManager.GetInstance().state == HopeState.High)
                 {
+                    AudioLibrary.Play(AudioName.CrowdCheer);
                     Camera.main.gameObject.GetComponent<CameraMovement>().ZoomCamera();
                 }
             }

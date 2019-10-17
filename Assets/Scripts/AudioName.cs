@@ -3,6 +3,7 @@
     PlayerSlash,
     PlayerHighSlash,
     EnemySlash,
+    EnemyDefeated,
     ActorHit,
     CrowdCheer,
     CrowdGasp,

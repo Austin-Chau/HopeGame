@@ -39,7 +39,6 @@ public abstract class Actor : MonoBehaviour
     protected virtual void RegisterDamage(int damageVal)
     {
         AudioLibrary.Play(AudioName.ActorHit);
-        anim.SetTrigger("Attacked");
         if (!hasSpriteMesh)
             StartCoroutine(FlashRed());
         else

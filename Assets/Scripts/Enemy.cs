@@ -49,8 +49,11 @@ public class Enemy : Actor
             RegisterDamage(attack.damage);
 
             Vector3 playerDirection = transform.position - Player.transform.position;
-            if (attack.slashType == SlashType.Melee) 
+            if (attack.slashType == SlashType.Melee)
+            {
+                anim.SetTrigger("Attacked");
                 Knockback(playerDirection);
+            }
 
             if (playerDirection.x < 0 && !facingRight ||
                 playerDirection.x > 0 && facingRight)
@@ -86,7 +89,8 @@ public class Enemy : Actor
 
         if (health <= 0)
         {
-            //GameManager.s.RaiseKillCount();
+            AudioLibrary.Play(AudioName.EnemyDefeated);
+            GameManager.s.RaiseKillCount();
             Destroy(gameObject);
         }
     }

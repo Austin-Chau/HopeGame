@@ -172,7 +172,7 @@ public class Player : Actor
                     AudioLibrary.Play(AudioName.PlayerSlash);
                     break;
                 case HopeState.High:
-                    slash.damage = 10;
+                    slash.damage = 20;
                     AudioLibrary.Play(AudioName.PlayerHighSlash);
                     break;
 

@@ -10,5 +10,6 @@
         AddClip(AudioName.CrowdGasp, "HopeLossGasp");
         AddClip(AudioName.LowJump, "LowJump");
         AddClip(AudioName.HighJump, "HighJump");
+        AddClip(AudioName.EnemyDefeated, "EnemyDefeated");
     }
 }

@@ -38,6 +38,7 @@ public abstract class Actor : MonoBehaviour
     /// <param name="damageVal">Amount of damage recieved</param>
     protected virtual void RegisterDamage(int damageVal)
     {
+        AudioLibrary.Play(AudioName.ActorHit);
         anim.SetTrigger("Attacked");
         if (!hasSpriteMesh)
             StartCoroutine(FlashRed());

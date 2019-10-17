@@ -161,6 +161,7 @@ public class Player : Actor
 
         slash.SetRotationAndMove(dir * speed);
 
+        AudioLibrary.Play(AudioName.PlayerSlash);
     }
 
     /// <summary>

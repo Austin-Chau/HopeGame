@@ -19,6 +19,7 @@ public class EnemyAttackBehaviour : StateMachineBehaviour
 
         float dir = enemy.facingRight ? 1 : -1;
         rb.AddForce(new Vector2(dir * AttackForce, 0));
+        AudioLibrary.Play(AudioName.EnemySlash);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

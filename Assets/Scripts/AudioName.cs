@@ -8,5 +8,6 @@
     CrowdCheer,
     CrowdGasp,
     LowJump,
-    HighJump
+    HighJump,
+    Footstep
 }

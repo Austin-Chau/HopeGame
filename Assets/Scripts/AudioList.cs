@@ -11,5 +11,6 @@
         AddClip(AudioName.LowJump, "LowJump");
         AddClip(AudioName.HighJump, "HighJump");
         AddClip(AudioName.EnemyDefeated, "EnemyDefeated");
+        AddClip(AudioName.Footstep, "Footstep");
     }
 }

@@ -268,4 +268,10 @@ public class Player : Actor
     {
         yield return null;
     }
+
+    public void PlayStep()
+    {
+        if(IsGrounded())
+            AudioLibrary.Play(AudioName.Footstep);
+    }
 }

@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
+        HopeManager.GetInstance().Hope = 5;
     }
 
     public void StartGame()

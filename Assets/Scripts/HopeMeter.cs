@@ -26,4 +26,9 @@ public class HopeMeter : MonoBehaviour
 
         image.sprite = gauges[hope];
     }
+
+    private void OnDisable()
+    {
+        HopeManager.HopeChangeDelegate -= UpdateHope;
+    }
 }

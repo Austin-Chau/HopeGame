@@ -48,9 +48,12 @@ public abstract class Actor : MonoBehaviour
     protected virtual void Knockback(Vector2 dir)
     {
         rb.velocity = Vector3.zero;
-        rb.AddForce(dir * knockbackForce);
-    }
+        float dirXSign = dir.x / Mathf.Abs(dir.x);
 
+        Vector2 newDir = new Vector2(dirXSign, .5f);
+
+        rb.AddForce(newDir * knockbackForce);
+    }
     /// <summary>
     /// Coroutine for flashing the character red. Checks if actor has either a SpriteRenderer
     /// or a SpriteMeshContainer as its child.

@@ -2983,8 +2983,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -324.6, y: 59.600006}
-  m_SizeDelta: {x: 649.1, y: 118.79999}
+  m_AnchoredPosition: {x: -324.6, y: 63.8}
+  m_SizeDelta: {x: 649.1, y: 127.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1371546980
 MonoBehaviour:
@@ -4113,7 +4113,8 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: You're the hero, and your powers are fueled by one thing:The hope of the
-    world! Defeat the enemies as fast as possible and give the world the hope it needs!
+    world! Defeat the enemies as fast as possible to score the fastest time, and give
+    hope back to the world!
 --- !u!222 &2006337523
 CanvasRenderer:
   m_ObjectHideFlags: 0

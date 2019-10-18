@@ -38,6 +38,9 @@ public class Player : Actor
 
     [SerializeField]
     private bool canMove = true;
+
+    [SerializeField]
+    private float damageCooldown = 2f;
     #endregion
 
     #region Private Variables
@@ -49,6 +52,7 @@ public class Player : Actor
     Transform tr;
     BoxCollider2D bc2d;
 
+    float damagedTime;
     float rangedAttackTime;
     float jumpTime;
 
@@ -255,31 +259,50 @@ public class Player : Actor
         GameObject other = collision.gameObject;
         if (other.layer == LayerMask.NameToLayer("Enemy"))
         {
-            AnimatorStateInfo asi = other.GetComponent<Animator>().GetNextAnimatorStateInfo(0);
-            if (asi.IsName("Attack") ||
-                asi.IsName("Idle"))
-            {
-                RegisterDamage(5);
-                HopeManager.GetInstance().Hope += -2;
-                AudioLibrary.Play(AudioName.CrowdGasp);
-            }
-            else
-            {
-                RegisterDamage(5);
-                HopeManager.GetInstance().Hope += -1;
-            }
-            Knockback(transform.position - other.transform.position);
+            RecieveDamage(other);
+            damagedTime = Time.time;
         }
     }
 
-    protected override void Knockback(Vector2 dir)
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        rb.velocity = Vector3.zero;
-
-        dir.y = dir.normalized.y;
-
-        rb.AddForce(dir * knockbackForce);
+        GameObject other = collision.gameObject;
+        if (damagedTime + damageCooldown < Time.time)
+        {
+            if (other.layer == LayerMask.NameToLayer("Enemy"))
+            {
+                RecieveDamage(other);
+                damagedTime = Time.time;
+            }
+        }
     }
+
+    private void RecieveDamage(GameObject other)
+    {
+        AnimatorStateInfo asi = other.GetComponent<Animator>().GetNextAnimatorStateInfo(0);
+        if (asi.IsName("Attack") ||
+            asi.IsName("Idle"))
+        {
+            RegisterDamage(5);
+            HopeManager.GetInstance().Hope += -2;
+            AudioLibrary.Play(AudioName.CrowdGasp);
+        }
+        else
+        {
+            RegisterDamage(5);
+            HopeManager.GetInstance().Hope += -1;
+        }
+        Knockback(transform.position - other.transform.position);
+    }
+
+    //protected override void Knockback(Vector2 dir)
+    //{
+    //    rb.velocity = Vector3.zero;
+
+    //    dir.y = dir.normalized.y;
+
+    //    rb.AddForce(dir * knockbackForce);
+    //}
 
     private void flipX(bool isFlipped)
     {

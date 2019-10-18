@@ -474,9 +474,32 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\nSound Effects From Freesounds.org\nbeerbelly38 PorkMuncher Adam_N Syna-Max
-    jalastram Timbre\n\nMusic:\n\"Automata\" by DOS-88\n\nFont:\nAssassin by Elementalist\n\nArt:\nAlien
-    Tileset by Projectmakers\nCity Tileset by \n\n"
+  m_Text: '
+
+    Sound Effects From Freesounds.org
+
+    beerbelly38 PorkMuncher Adam_N Syna-Max jalastram Timbre
+
+
+    Music:
+
+    "Automata" by DOS-88
+
+
+    Font:
+
+    Assassin by Elementalist
+
+
+    Art:
+
+    Alien Tileset by Projectmakers
+
+    City Tileset by ansimzu
+
+    Slash Effect by khleug35
+
+'
 --- !u!222 &527154138
 CanvasRenderer:
   m_ObjectHideFlags: 0

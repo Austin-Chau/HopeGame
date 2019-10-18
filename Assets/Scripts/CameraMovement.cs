@@ -56,6 +56,7 @@ public class CameraMovement : MonoBehaviour
 
         Vector3 pos = new Vector3(Target.transform.position.x, Target.transform.position.y, transform.position.z);
         transform.position = pos;
+        Target.gameObject.GetComponent<Player>().enabled = false;
 
         Time.timeScale = 0.05f;
         float camOriginalSize = cam.orthographicSize;
@@ -77,5 +78,6 @@ public class CameraMovement : MonoBehaviour
 
         Time.timeScale = 1f;
 
+        Target.gameObject.GetComponent<Player>().enabled = true;
     }
 }

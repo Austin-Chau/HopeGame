@@ -9,5 +9,6 @@
     CrowdGasp,
     LowJump,
     HighJump,
-    Footstep
+    Footstep,
+    CrowdBoo
 }

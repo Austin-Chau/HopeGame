@@ -31,6 +31,10 @@ public class Player : Actor
     [SerializeField]
     [Tooltip("Amount that speed is multiplied by when at low hope")]
     private float lowHopeSpeedMultiplier = 1.2f;
+
+    [SerializeField]
+    [Tooltip("Amount of time you can range attack without consequence.")]
+    private float rangedAttackCooldown = 3f;
     #endregion
 
     #region Private Variables
@@ -38,9 +42,11 @@ public class Player : Actor
     float horizontal = 0f;
     float vertical = 0f;
     bool facingRight = true;
+    bool rangedAttackedRecently = false;
     Transform tr;
     BoxCollider2D bc2d;
 
+    float rangedAttackTime;
     float jumpTime;
 
     #endregion
@@ -58,6 +64,7 @@ public class Player : Actor
     // Update is called once per frame
     void Update()
     {
+        
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
@@ -100,17 +107,28 @@ public class Player : Actor
             }
         }
 
+        if (rangedAttackTime + rangedAttackCooldown < Time.time &&
+            rangedAttackedRecently)
+            rangedAttackedRecently = false;
+
         if (!anim.GetCurrentAnimatorStateInfo(1).IsName("Slash"))
         {
             if (Input.GetButtonDown("Slash"))
             {
                 Slash(1f);
-                
+                rangedAttackedRecently = false;
             }
 
 
             if (Input.GetButtonDown("Slash2"))
             {
+                if (rangedAttackedRecently)
+                {
+                    AudioLibrary.Play(AudioName.CrowdBoo);
+                    HopeManager.GetInstance().Hope -= 1;
+                }
+                rangedAttackedRecently = true;
+                rangedAttackTime = Time.time;
                 Slash(slashSpeed);
             }
         }

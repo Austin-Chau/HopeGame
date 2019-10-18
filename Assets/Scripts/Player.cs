@@ -35,6 +35,9 @@ public class Player : Actor
     [SerializeField]
     [Tooltip("Amount of time you can range attack without consequence.")]
     private float rangedAttackCooldown = 3f;
+
+    [SerializeField]
+    private bool canMove = true;
     #endregion
 
     #region Private Variables
@@ -64,72 +67,75 @@ public class Player : Actor
     // Update is called once per frame
     void Update()
     {
-        
-        horizontal = Input.GetAxis("Horizontal");
-        vertical = Input.GetAxis("Vertical");
-
-        if (horizontal != 0)
+        if (Time.timeScale != 0)
         {
-            Move();
-        }
-        else
-        {
-            anim.SetBool("isMoving", false);
-        }
+            horizontal = Input.GetAxis("Horizontal");
+            vertical = Input.GetAxis("Vertical");
 
-
-        if (Input.GetButtonDown("Jump"))
-        {
-            if (IsGrounded())
+            if (horizontal != 0)
             {
-                jumpTime = Time.time;
-                anim.SetBool("jumpCharge", true);
+                Move();
+            }
+            else
+            {
+                anim.SetBool("isMoving", false);
             }
 
-        }
 
-        if (Input.GetButtonUp("Jump"))
-        {
-            if (IsGrounded())
+            if (Input.GetButtonDown("Jump"))
             {
-                if (Time.time - jumpTime <= jumpTimeThreshold)
+                if (IsGrounded())
                 {
-                    rb.AddForce(Vector2.up * jumpForce);
-                    AudioLibrary.Play(AudioName.LowJump);
+                    jumpTime = Time.time;
+                    anim.SetBool("jumpCharge", true);
                 }
-                else
-                {
-                    rb.AddForce(Vector2.up * jumpForce * longJumpMultiplier);
-                    AudioLibrary.Play(AudioName.HighJump);
-                }
-                jumpTime = float.MaxValue;
-                anim.SetBool("jumpCharge", false);
+
             }
-        }
 
-        if (rangedAttackTime + rangedAttackCooldown < Time.time &&
-            rangedAttackedRecently)
-            rangedAttackedRecently = false;
-
-        if (!anim.GetCurrentAnimatorStateInfo(1).IsName("Slash"))
-        {
-            if (Input.GetButtonDown("Slash"))
+            if (Input.GetButtonUp("Jump"))
             {
-                Slash(1f);
+                if (IsGrounded())
+                {
+                    if (Time.time - jumpTime <= jumpTimeThreshold)
+                    {
+                        rb.AddForce(Vector2.up * jumpForce);
+                        AudioLibrary.Play(AudioName.LowJump);
+                    }
+                    else
+                    {
+                        rb.AddForce(Vector2.up * jumpForce * longJumpMultiplier);
+                        AudioLibrary.Play(AudioName.HighJump);
+                    }
+                    jumpTime = float.MaxValue;
+                    anim.SetBool("jumpCharge", false);
+                }
+            }
+
+            if (rangedAttackTime + rangedAttackCooldown < Time.time &&
+                rangedAttackedRecently)
                 rangedAttackedRecently = false;
-            }
 
-
-            if (Input.GetButtonDown("Slash2"))
+            if (!anim.GetCurrentAnimatorStateInfo(1).IsName("Slash"))
             {
-                if (rangedAttackedRecently)
+                if (Input.GetButtonDown("Slash"))
                 {
-                    AudioLibrary.Play(AudioName.CrowdBoo);
-                    HopeManager.GetInstance().Hope -= 1;
+                    Slash(1f);
+                    rangedAttackedRecently = false;
                 }
-                rangedAttackedRecently = true;
-                rangedAttackTime = Time.time;
-                Slash(slashSpeed);
+
+
+                if (Input.GetButtonDown("Slash2"))
+                {
+                    if (rangedAttackedRecently)
+                    {
+                        GameManager.s.PopUpRangedNotification();
+                        AudioLibrary.Play(AudioName.CrowdBoo);
+                        HopeManager.GetInstance().Hope -= 1;
+                    }
+                    rangedAttackedRecently = true;
+                    rangedAttackTime = Time.time;
+                    Slash(slashSpeed);
+                }
             }
         }
     }
@@ -211,8 +217,8 @@ public class Player : Actor
         float finalSpeed = speed;
         if (HopeManager.GetInstance().state == HopeState.Low)
             finalSpeed *= lowHopeSpeedMultiplier;
-
-        transform.position += newPos * finalSpeed * Time.deltaTime;
+        if(canMove)
+            transform.position += newPos * finalSpeed * Time.deltaTime;
 
         if (facingRight && horizontal < 0)
         {

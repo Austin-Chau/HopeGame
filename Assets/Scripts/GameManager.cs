@@ -6,7 +6,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager s;
 
+    public GameObject NotificationWindow;
     public GameObject WinText;
+    public GameObject PauseMenu;
 
     [Header("Hope Mechanics")]
 
@@ -23,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     HopeManager hm;
     Coroutine co;
-
+    bool coroutineRunning = false;
     //Win condition right now.
     int killCount;
     int enemyCount;
@@ -40,7 +42,15 @@ public class GameManager : MonoBehaviour
 
         StartCoroutine(AdjustHope());
     }
-    
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Pause"))
+        {
+            PauseMenu.SetActive(true); 
+        }
+    }
+
 
     IEnumerator AdjustHope()
     {
@@ -87,5 +97,19 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0;
             WinText.SetActive(true);
         }
+    }
+
+    public void PopUpRangedNotification()
+    {
+        if(!coroutineRunning) StartCoroutine(NotificationCoroutine());
+    }
+
+    IEnumerator NotificationCoroutine()
+    {
+        coroutineRunning = true;
+        NotificationWindow.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        NotificationWindow.SetActive(false);
+        coroutineRunning = false;
     }
 }

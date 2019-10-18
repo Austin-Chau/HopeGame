@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     private const int LOW_HOPE_THRESHOLD = -66;
     private const int HIGH_HOPE_THRESHOLD = 66;
 
+    Timer timer;
     HopeManager hm;
     Coroutine co;
     bool coroutineRunning = false;
@@ -35,7 +36,8 @@ public class GameManager : MonoBehaviour
     {
         if (s != null) Destroy(gameObject);
         else s = this;
-        
+
+        timer = GameObject.Find("Timer").GetComponent<Timer>();
         hm = HopeManager.GetInstance();
 
         CountEnemies();
@@ -95,7 +97,9 @@ public class GameManager : MonoBehaviour
         if(killCount >= enemyCount)
         {
             Time.timeScale = 0;
+            TimeStruct ts = new TimeStruct(timer.secondsPassed);
             WinText.SetActive(true);
+            WinText.GetComponent<WinText>().UpdateYourTime(ts);
         }
     }
 

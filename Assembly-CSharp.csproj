@@ -114,6 +114,7 @@
     <Compile Include="Assets\Scripts\SpriteMeshContainer.cs" />
     <Compile Include="Assets\Scripts\Uphope.cs" />
     <Compile Include="Assets\Timer.cs" />
+    <Compile Include="Assets\WinText.cs" />
     <None Include="Assets\Asset References.txt" />
     <None Include="Assets\Anima2D\Examples\Shaders\VisibleInsideMask.shader" />
     <None Include="Assets\Anima2D\Examples\Shaders\VisibleOutsideMask.shader" />

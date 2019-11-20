@@ -21,12 +21,11 @@ public class Player : Actor
     private int slashSpeed = 2;
 
     [SerializeField]
-    [Tooltip("Time between press and release for high jump.")]
-    private float jumpTimeThreshold = .25f;
+    [Tooltip("")]
+    private float fallMultiplier = 2.5f;
 
     [SerializeField]
-    [Tooltip("Amount of force jump is multiplied by.")]
-    private float longJumpMultiplier = 1.5f;
+    private float lowJumpMultiplier = 2f;
 
     [SerializeField]
     [Tooltip("Amount that speed is multiplied by when at low hope")]
@@ -86,36 +85,27 @@ public class Player : Actor
             }
 
 
+
             if (Input.GetButtonDown("Jump"))
             {
                 if (IsGrounded())
                 {
-                    jumpTime = Time.time;
-                    anim.SetBool("jumpCharge", true);
-                }
 
+                    rb.AddForce(Vector2.up * jumpForce);
+                    AudioLibrary.Play(AudioName.LowJump);
+                }
             }
 
-            if (Input.GetButtonUp("Jump"))
+            if (rb.velocity.y < 0)
             {
-                if (IsGrounded())
-                {
-                    if (Time.time - jumpTime <= jumpTimeThreshold)
-                    {
-                        rb.AddForce(Vector2.up * jumpForce);
-                        AudioLibrary.Play(AudioName.LowJump);
-                    }
-                    else
-                    {
-                        rb.AddForce(Vector2.up * jumpForce * longJumpMultiplier);
-                        AudioLibrary.Play(AudioName.HighJump);
-                    }
-                    jumpTime = float.MaxValue;
-                    anim.SetBool("jumpCharge", false);
-                }
+                rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            }
+            else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
+            {
+                rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
             }
 
-            if (rangedAttackTime + rangedAttackCooldown < Time.time &&
+                if (rangedAttackTime + rangedAttackCooldown < Time.time &&
                 rangedAttackedRecently)
                 rangedAttackedRecently = false;
 

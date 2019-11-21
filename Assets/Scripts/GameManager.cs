@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject NotificationWindow;
     public GameObject WinText;
     public GameObject PauseMenu;
+    public Text EnemyCountText;
 
     [Header("Hope Mechanics")]
 
@@ -85,6 +87,7 @@ public class GameManager : MonoBehaviour
         {
             enemyCount++;
         }
+        UpdateEnemyCountText();
     }
 
     /// <summary>
@@ -93,6 +96,8 @@ public class GameManager : MonoBehaviour
     public void RaiseKillCount()
     {
         killCount++;
+
+        UpdateEnemyCountText();
 
         if(killCount >= enemyCount)
         {
@@ -115,5 +120,10 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
         NotificationWindow.SetActive(false);
         coroutineRunning = false;
+    }
+
+    private void UpdateEnemyCountText()
+    {
+        EnemyCountText.text = "Enemies: " + (enemyCount - killCount);
     }
 }
